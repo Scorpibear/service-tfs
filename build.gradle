@@ -17,6 +17,7 @@ plugins {
 }
 apply plugin: 'java'
 apply plugin: "spring-boot"
+apply plugin: 'jacoco'
 apply from: 'build-docker.gradle'
 apply from: 'release-service.gradle'
 apply from: 'build-quality.gradle'
@@ -77,8 +78,10 @@ jar {
     }
 }
 
+jacocoTestReport {
+    reports {
+        xml.enabled true
+    }
+}
 
-
-
-
-
+build.dependsOn jacocoTestReport
